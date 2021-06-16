@@ -1,0 +1,51 @@
+checkoutContainer{
+    width: calc(100% - 400)
+},
+
+checkoutHeader:{
+    width: 100%
+    box-sizing: border-box
+    padding: 10 20
+},
+
+
+
+
+
+
+stepNumber:{
+    background: #fff
+},
+
+checkoutHeaderactive :{
+    color: #fff
+},
+
+stepTitle:{
+    color: "#fff"
+},
+loggedInId:{
+    fontSize: 12
+    margin: 10 
+},
+
+addressContainer:{
+    
+    padding: 20,
+    backgroundColor: "#f5faff"
+},
+
+
+addressType:{
+    
+    textTransform: uppercase
+    
+},
+fullAddress:{
+    fontSize: 12
+   
+},
+stepCompleted:{
+    padding: 60,
+    fontSize: 12,
+}

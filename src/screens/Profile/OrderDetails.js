@@ -13,7 +13,6 @@ const OrderDetails = ({ route, navigation }) => {
 
   useEffect(() => {
     const payload = route.params;
-    console.log(payload);
 
     dispatch(getOrder(payload));
   }, []);
@@ -116,9 +115,13 @@ const OrderDetails = ({ route, navigation }) => {
                 <Image
                   resizeMode="contain"
                   style={{ width: 50, height: 50 }}
-                  source={{
-                    uri: imageUrl(item.productId.productPictures[0].img),
-                  }}
+                  source={
+                    item.productId.productPictures.length > 0
+                      ? {
+                          uri: imageUrl(item.productId.productPictures[0].img),
+                        }
+                      : require("../../../src/public/images/404.png")
+                  }
                 />
               </View>
               <View style={{ flexShrink: 1, justifyContent: "space-between" }}>

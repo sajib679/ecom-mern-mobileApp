@@ -7,6 +7,7 @@ import { addToCart } from "../../store/actions/cart.action";
 import SearchComp from "../SearchedProduct/index";
 import { RefreshControl, FlatList, ScrollView } from "react-native";
 import { getInitialData } from "../../store/actions";
+import NoResponse from "../../components/NoResponse";
 
 const wait = (timeout) => {
   return new Promise((resolve) => setTimeout(resolve, timeout));
@@ -30,9 +31,13 @@ const AllProduct = ({ navigation }) => {
   }, []);
 
   const addCart = (item) => {
-    const { _id, name, price } = item;
-    const pictures = item.productPictures;
-    const img = pictures[0].img;
+    const { _id, name, price, productPictures } = item;
+    let img;
+    if (productPictures.length > 0) {
+      img = productPictures[0].img;
+    } else {
+      img = null;
+    }
     dispatch(addToCart({ _id, name, price, img }));
   };
 
@@ -56,21 +61,27 @@ const AllProduct = ({ navigation }) => {
     );
   };
 
-  return product.isLoaded ? (
-    <>
-      <SearchComp navigation={navigation}></SearchComp>
-      <FlatList
-        data={allProduct}
-        keyExtractor={(item) => item._id}
-        numColumns={3}
-        renderItem={renderProduct}
-        refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-        }
-      />
-    </>
+  if (product.isLoaded) {
+    return (
+      <>
+        <SearchComp navigation={navigation}></SearchComp>
+        <FlatList
+          data={allProduct}
+          keyExtractor={(item) => item._id}
+          numColumns={3}
+          renderItem={renderProduct}
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          }
+        />
+      </>
+    );
+  }
+
+  return !product.loading ? (
+    <NoResponse />
   ) : (
-    <Loading visible={!product.isLoaded} />
+    <Loading visible={product.loading} />
   );
 };
 

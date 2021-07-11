@@ -59,7 +59,6 @@ const AddressForm = (props) => {
         addressType,
       },
     };
-    console.log(payload);
     if (id) {
       payload.address._id = id;
     }
@@ -68,9 +67,7 @@ const AddressForm = (props) => {
   };
 
   useEffect(() => {
-    console.log("addressCount", user.address);
     if (submitFlag) {
-      console.log("where are we", user);
       let _address = {};
       if (id) {
         _address = {
@@ -116,7 +113,6 @@ const AddressForm = (props) => {
               value={mobileNumber}
               onChangeText={(e) => {
                 setMobileNumber(e);
-                console.log(mobileNumber);
               }}
             />
           </View>

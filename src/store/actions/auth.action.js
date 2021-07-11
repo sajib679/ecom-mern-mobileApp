@@ -53,7 +53,6 @@ export const login = (user) => {
 export const isUserLoggedIn = () => {
   return async (dispatch) => {
     const token = await getItem("token");
-    console.log(`IsUser: ${token}`);
     if (token !== null) {
       const user = await getItem("user");
 
@@ -74,6 +73,7 @@ export const signout = () => {
   return async (dispatch) => {
     dispatch({ type: authConstants.LOGOUT_REQUEST });
     const res = await axios.post("/signout");
+    console.log(res);
     if (res.status === 200) {
       removeItem("token");
       dispatch({
@@ -81,8 +81,8 @@ export const signout = () => {
       });
     } else {
       dispatch({
-        type: authConstants.LOGIN_FAILURE,
-        payload: { error: res.data.error },
+        type: authConstants.LOGOUT_FAILURE,
+        // payload: { error: res.data.error },
       });
     }
   };

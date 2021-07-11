@@ -57,13 +57,11 @@ const Search = ({ navigation }) => {
     const input = e;
     setSearchTerm(input);
     setSearchTermLength(input.length);
-    console.log(searchTerm);
   };
 
   useEffect(() => {
     setSearchTerm(searchTerm);
     setSearchTermLength(searchTermLength);
-    console.log(searchTerm, searchTermLength, prevCount);
     dispatch(searchFocused(focused, searchTermLength));
     searchByName(searchTerm);
   }, [searchTerm]);

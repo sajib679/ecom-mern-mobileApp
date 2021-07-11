@@ -28,10 +28,8 @@ const SearchedProductStore = ({ navigation }) => {
   }, [product, searchedProduct]);
 
   const { focused, searchTermLength } = useSelector((state) => state.search);
-  console.log(focused, searchTermLength);
 
   const addCart = (item) => {
-    console.log(item);
     const { _id, name, price } = item;
     const pictures = item.productPictures;
     const img = pictures[0].img;

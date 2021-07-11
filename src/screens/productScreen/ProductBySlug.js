@@ -22,7 +22,6 @@ const PrdoductBySlug = ({ slug, navigation }) => {
       const { _id, name, price } = item;
       const pictures = item.productPictures;
       const img = pictures[0].img;
-      console.log(img);
       dispatch(addToCart({ _id, name, price, img }));
     };
 

@@ -4,9 +4,15 @@ import { authConstants } from "../store/constant";
 import store from "../store";
 import { removeItem } from "./localStorage";
 
-const token = store.getState().auth.token;
+// instance.interceptors.request.use((config) => {
+//   /* some logic */
+//   return {
+//     ...config,
+// cancelToken: new CancelToken((cancel) => cancel("Cancel repeated request")),
+//   };
+// });
 
-console.log("fromAXIOS", token);
+const token = store.getState().auth.token;
 
 const axiosInstance = axios.create({
   baseURL: api,
@@ -15,29 +21,52 @@ const axiosInstance = axios.create({
   },
 });
 
-axiosInstance.interceptors.request.use((req) => {
-  const { auth } = store.getState();
-  if (auth.token) {
-    req.headers.Authorization = `Bearer ${auth.token}`;
+axiosInstance.interceptors.request.use(
+  (req) => {
+    console.log(req);
+    // const CancelToken = axios.CancelToken;
+
+    const { auth } = store.getState();
+    if (auth.token) {
+      req.headers.Authorization = `Bearer ${auth.token}`;
+    }
+
+    req.timeout = 20000;
+    return req;
+  },
+  (error) => {
+    // Do something with request error
+    console.log(error);
+    return error;
   }
-  return req;
-});
+);
 
 axiosInstance.interceptors.response.use(
   (res) => {
+    console.log("fromInterceptorRes:", res);
     return res;
   },
   (error) => {
-    const { status } = error.response;
-    console.log(error.response);
+    console.log("fromInterceptorError:", error);
+    // console.log();
+    console.log("fromInterceptorError(ERROR.request):", error.request);
 
-    if (status === 599) {
-      removeItem("token");
-      removeItem("user");
-      store.dispatch({ type: authConstants.LOGOUT_SUCCESS });
+    // const badResponse = error.response;
+    const netwrokError = error.request;
+
+    if (netwrokError.status === 0) {
+      return netwrokError;
     }
 
-    return Promise.reject(error);
+    if (error.response) {
+      const { status } = error.response;
+      if (status === 599) {
+        localStorage.clear();
+        store.dispatch({ type: authConstants.LOGOUT_SUCCESS });
+      }
+    }
+
+    return error;
   }
 );
 export default axiosInstance;

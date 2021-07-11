@@ -12,7 +12,6 @@ import {
 
 const ProductDetails = ({ route, navigation }) => {
   const { productId } = route.params;
-  console.log(productId);
   const [details, setDetails] = useState([]);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -22,10 +21,13 @@ const ProductDetails = ({ route, navigation }) => {
   const { productDetails, isLoaded } = useSelector((state) => state.product);
 
   const addCart = (item) => {
-    console.log(item);
-    const { _id, name, price } = item;
-    const pictures = item.productPictures;
-    const img = pictures[0].img;
+    const { _id, name, price, productPictures } = item;
+    let img;
+    if (productPictures.length > 0) {
+      img = productPictures[0].img;
+    } else {
+      img = null;
+    }
     dispatch(addToCart({ _id, name, price, img }));
   };
 
@@ -35,7 +37,11 @@ const ProductDetails = ({ route, navigation }) => {
         name={productDetails.name}
         price={productDetails.price}
         quantity={productDetails.quantity}
-        img={productDetails.productPictures[0].img}
+        img={
+          productDetails.productPictures.length > 0
+            ? productDetails.productPictures[0].img
+            : null
+        }
         viewDetails={() => {
           dispatch(resetProductDetails());
           navigation.goBack();

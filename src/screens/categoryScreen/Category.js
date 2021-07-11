@@ -19,10 +19,7 @@ const Category = ({ route, navigation }) => {
     setSubMenu(subCat);
   }, []);
 
-  console.log("from Cat:", subMenu);
-
   const grid = ({ item }) => {
-    console.log(item.slug);
     return (
       <SubMenuCard
         catName={item.name}

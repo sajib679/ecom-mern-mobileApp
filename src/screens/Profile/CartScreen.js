@@ -9,7 +9,6 @@ import { Button } from "react-native-paper";
 import EmptyCard from "../../components/EmptyCard";
 
 const CartScreen = ({ route, navigation, onlyCartItems }) => {
-  console.log(navigation);
   const cart = useSelector((state) => state.cart);
   const [cartItems, setCartItems] = useState(cart.cartItems);
   const dispatch = useDispatch();
@@ -21,7 +20,6 @@ const CartScreen = ({ route, navigation, onlyCartItems }) => {
   }, [cart.cartItems]);
 
   const onQuantityIncrement = (_id, qty) => {
-    console.log(_id);
     const { name, price, img } = cartItems[_id];
     dispatch(addToCart({ _id, name, price, img }, 1));
   };
@@ -37,9 +35,6 @@ const CartScreen = ({ route, navigation, onlyCartItems }) => {
   const onRemoveCartItem = (_id) => {
     dispatch(removeCartItem({ productId: _id }));
   };
-  // console.log(cart);
-
-  // console.log(item);
 
   if (onlyCartItems) {
     return (

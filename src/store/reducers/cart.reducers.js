@@ -26,7 +26,7 @@ const cartReducer = (state = initState, action) => {
       state = {
         ...state,
         updatingCart: false,
-        error: action.payload.error,
+        // error: action.payload.error,
       };
       break;
     case cartConstants.RESET_CART:

@@ -13,7 +13,7 @@ const OrderScreen = ({ navigation }) => {
     if (auth.authenticate) {
       dispatch(getOrders());
     }
-  }, [auth.authenticate]);
+  }, [auth.authenticate, orders]);
 
   const date = (timestamp) => {
     const unixTimestamp = Date.parse(timestamp);

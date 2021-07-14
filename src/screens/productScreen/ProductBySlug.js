@@ -37,7 +37,7 @@ const PrdoductBySlug = ({ slug, navigation }) => {
           })
         }
         addToCart={() => addCart(item)}
-        iconLeft={"expand"}
+        iconLeft={"circle-expand"}
         iconRight
       />
     );

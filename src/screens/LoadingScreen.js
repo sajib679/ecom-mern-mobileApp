@@ -11,7 +11,7 @@ const MyComponent = ({ visible }) => {
         animating={isLoading}
         color={Colors.pink500}
         size={60}
-        style={{ flex: 1, justifyContent: "center", alignContent: "center" }}
+        style={{ justifyContent: "center", alignContent: "center" }}
       />
       <Text>Loading</Text>
     </View>

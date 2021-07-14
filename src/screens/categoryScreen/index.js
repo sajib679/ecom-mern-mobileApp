@@ -12,7 +12,11 @@ const Index = () => {
     <Stack.Navigator>
       <Stack.Screen
         name="ParentMenu"
-        options={{ headerShown: false }}
+        options={() => {
+          return {
+            title: "Category",
+          };
+        }}
         component={ParentMenu}
       />
       <Stack.Screen

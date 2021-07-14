@@ -15,8 +15,11 @@ const CategoryGrid = ({ color, catName, onTap }) => {
         style={[
           styles.category,
           {
-            backgroundColor: `${color ? "#FAF9F6" : "blue"}`,
+            backgroundColor: `${color ? "#FAF9F6" : "tomato"}`,
             height: height,
+            width: "100%",
+            maxWidth: "31%",
+            maxHeight: height,
             borderRadius: 10,
           },
         ]}

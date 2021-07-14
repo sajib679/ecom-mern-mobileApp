@@ -1,11 +1,7 @@
 import * as React from "react";
 import { StyleSheet, View, Image, Text } from "react-native";
 import { imageUrl } from "../helpers/urlConfig";
-import {
-  MaterialCommunityIcons,
-  MaterialIcons,
-  Ionicons,
-} from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import {
   Avatar,
   Button,
@@ -55,7 +51,7 @@ const ProductCard = ({
     >
       {iconLeft && (
         <Button onPress={viewDetails}>
-          <Ionicons name={iconLeft} size={18} color="gray" />
+          <MaterialCommunityIcons name={iconLeft} size={18} color="gray" />
         </Button>
       )}
 

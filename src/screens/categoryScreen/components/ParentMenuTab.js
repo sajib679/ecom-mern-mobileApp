@@ -40,7 +40,7 @@ const ParentMenuTab = ({ route, navigation, slug }) => {
       renderItem={grid}
     />
   ) : (
-    <Text>No Cat</Text>
+    <SubMenuCard catName={"No Category Available"} color=" #f5f5f5" />
   );
 };
 

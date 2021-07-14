@@ -1,11 +1,5 @@
-import React, { useState, useEffect } from "react";
-import {
-  StyleSheet,
-  RefreshControl,
-  ScrollView,
-  Text,
-  View,
-} from "react-native";
+import React, { useEffect } from "react";
+import { StyleSheet, View, Text } from "react-native";
 import { Badge } from "react-native-paper";
 import { useSelector, useDispatch } from "react-redux";
 import { getInitialData } from "../store/actions/initialData.action";
@@ -15,12 +9,9 @@ import CategoryScreen from "./categoryScreen/index";
 import ProductScreen from "./productScreen/Index";
 import User from "./User/index";
 import { isUserLoggedIn } from "../store/actions/auth.action";
-import {
-  MaterialCommunityIcons,
-  AntDesign,
-  FontAwesome5,
-  Fontisto,
-} from "@expo/vector-icons";
+
+import { FontAwesome, MaterialCommunityIcons } from "@expo/vector-icons";
+
 import { getCartItems } from "../store/actions";
 import CheckoutScreen from "./CheckoutScreen";
 const Tab = createBottomTabNavigator();
@@ -52,7 +43,13 @@ const HomeScreen = () => {
           options={{
             title: "Product",
             tabBarIcon: ({ color, size }) => {
-              return <FontAwesome5 name="home" size={24} color="gray" />;
+              return (
+                <MaterialCommunityIcons
+                  name="home-outline"
+                  size={24}
+                  color="gray"
+                />
+              );
             },
           }}
         />
@@ -62,7 +59,13 @@ const HomeScreen = () => {
           options={{
             title: "Category",
             tabBarIcon: ({ color, size }) => {
-              return <FontAwesome5 name="list" size={24} color="gray" />;
+              return (
+                <MaterialCommunityIcons
+                  name="view-list-outline"
+                  size={24}
+                  color="gray"
+                />
+              );
             },
           }}
         />
@@ -78,7 +81,7 @@ const HomeScreen = () => {
                     <Badge size={24}>{itemCount}</Badge>
                   )}
                   <MaterialCommunityIcons
-                    name="cart-arrow-right"
+                    name="cart-outline"
                     size={24}
                     color="gray"
                   />
@@ -97,7 +100,7 @@ const HomeScreen = () => {
                   tabBarIcon: ({ color, size }) => {
                     return (
                       <MaterialCommunityIcons
-                        name="account-check"
+                        name="account-outline"
                         size={24}
                         color="gray"
                       />
@@ -107,7 +110,13 @@ const HomeScreen = () => {
               : {
                   title: "Login",
                   tabBarIcon: ({ color, size }) => {
-                    return <AntDesign name="login" size={24} color="black" />;
+                    return (
+                      <MaterialCommunityIcons
+                        name="login"
+                        size={24}
+                        color="black"
+                      />
+                    );
                   },
                 }
           }

@@ -47,7 +47,7 @@ const ProductDetails = ({ route, navigation }) => {
           navigation.goBack();
         }}
         addToCart={() => addCart(productDetails)}
-        iconLeft={"arrow-back-sharp"}
+        iconLeft={"arrow-left"}
         iconRight
       />
     ) : null

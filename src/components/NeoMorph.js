@@ -63,7 +63,8 @@ const styles = StyleSheet.create({
   topShadow: {},
 
   inner: {
-    backgroundColor: platinum,
+    backgroundColor: "#f4f4f4",
+
     borderColor: offWhite,
     borderWidth: 2,
     justifyContent: "center",

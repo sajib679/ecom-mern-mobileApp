@@ -55,7 +55,7 @@ const AllProduct = ({ navigation }) => {
           })
         }
         addToCart={() => addCart(item)}
-        iconLeft={"expand"}
+        iconLeft={"circle-expand"}
         iconRight
       />
     );

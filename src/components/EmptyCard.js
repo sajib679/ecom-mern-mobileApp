@@ -4,8 +4,8 @@ import { Title, Avatar } from "react-native-paper";
 
 const EmptyCard = ({ uri, message }) => {
   return (
-    <View style={styles.container}>
-      <View style={styles.card}>
+    <View style={styles.card}>
+      <View style={styles.container}>
         <View style={styles.center}>
           <Image
             resizeMode="cover"
@@ -24,18 +24,8 @@ export default EmptyCard;
 const styles = StyleSheet.create({
   card: {
     height: "100%",
-    width: "98%",
-    backgroundColor: "#fff",
+    width: "100%",
     shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.22,
-    shadowRadius: 2.22,
-    elevation: 1,
-    padding: 10,
-    borderBottomColor: "#cecece",
     borderRadius: 10,
     paddingHorizontal: 10,
     marginVertical: 4,
@@ -46,10 +36,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
+    alignContent: "center",
     justifyContent: "center",
     padding: 2,
-    backgroundColor: "#eee",
     flex: 1,
+    backgroundColor: "#fff",
   },
 
   center: {

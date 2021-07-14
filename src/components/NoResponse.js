@@ -1,5 +1,11 @@
 import React, { useEffect } from "react";
-import { StyleSheet, Text, View, RefreshControl } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  RefreshControl,
+} from "react-native";
 import { getInitialData } from "../store/actions";
 
 const wait = (timeout) => {
@@ -17,7 +23,7 @@ const NoResponse = ({ children }) => {
   }, []);
 
   return (
-    <View
+    <ScrollView
       style={styles.box}
       refreshControl={
         <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
@@ -25,7 +31,7 @@ const NoResponse = ({ children }) => {
     >
       <Text>No Response! Try to Refresh</Text>
       {children}
-    </View>
+    </ScrollView>
   );
 };
 

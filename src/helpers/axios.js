@@ -47,21 +47,9 @@ axiosInstance.interceptors.response.use(
     return res;
   },
   (error) => {
-    console.log("fromInterceptorError:", error);
-    // console.log();
-    console.log("fromInterceptorError(ERROR.request):", error.request);
-
-    // const badResponse = error.response;
-    const netwrokError = error.request;
-
-    if (netwrokError.status === 0) {
-      return netwrokError;
-    }
-
     if (error.response) {
       const { status } = error.response;
       if (status === 599) {
-        localStorage.clear();
         store.dispatch({ type: authConstants.LOGOUT_SUCCESS });
       }
     }

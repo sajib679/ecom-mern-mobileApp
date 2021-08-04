@@ -68,11 +68,12 @@ export default ProductCard;
 
 const styles = StyleSheet.create({
   product: {
-    flex: 1 / 3,
+    width: 160,
+    height: "100%",
     marginHorizontal: 2,
     marginVertical: 2,
     borderRadius: 8,
-    paddingHorizontal: 5,
+    paddingHorizontal: 10,
     paddingVertical: 2,
   },
   catText: {

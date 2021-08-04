@@ -21,7 +21,7 @@ export default PriceDetails;
 const styles = StyleSheet.create({
   box: {
     flexDirection: "row",
-    paddingVertical: 30,
+    paddingVertical: 20,
     paddingHorizontal: 2,
     justifyContent: "flex-start",
     elevation: 1,

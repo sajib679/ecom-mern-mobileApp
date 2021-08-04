@@ -6,3 +6,4 @@ export * from "./category.action";
 export * from "./initialData.action";
 export * from "./cart.action";
 export * from "./search.action";
+export * from "./banner.action";

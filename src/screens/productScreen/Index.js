@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import AllProduct from "./AllProduct";
 import ProductDetails from "./ProductDetails";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
 const Stack = createStackNavigator();
 

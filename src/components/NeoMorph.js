@@ -6,46 +6,17 @@ const gray = "#A9A9A9";
 const platinum = "#E5E4E2";
 const whitish = "#DEE9F7";
 const litish = "#E2FCFD";
-const NeoMorph = ({ children, size, style, square, elevation }) => {
+const NeoMorph = ({ children, size, style }) => {
   return (
-    <View
-      style={{
-        alignSelf: "center",
-        width: size,
-        height: size,
-        shadowOffset: {
-          width: -6,
-          height: -6,
-        },
-        shadowOpacity: 0.22,
-        shadowRadius: 2.22,
-        elevation: elevation,
-        borderColor: "#cecece",
-        borderRadius: !square ? size / 2 || 40 / 2 : 10,
-      }}
-    >
-      <View
-        style={{
-          width: size,
-          height: size,
-          shadowOffset: {
-            width: 0,
-            height: 6,
-          },
-          shadowOpacity: 0.22,
-          shadowRadius: 6,
-          elevation: elevation,
-          borderColor: "#cecece",
-          borderRadius: !square ? size / 2 || 40 / 2 : 10,
-        }}
-      >
+    <View style={styles.topShadow}>
+      <View style={styles.bottomShadow}>
         <View
           style={[
             styles.inner,
             {
               width: size || 40,
               height: size || 40,
-              borderRadius: !square ? size / 2 || 40 / 2 : 10,
+              borderRadius: size / 2 || 40 / 2,
             },
             style,
           ]}
@@ -60,7 +31,33 @@ const NeoMorph = ({ children, size, style, square, elevation }) => {
 export default NeoMorph;
 
 const styles = StyleSheet.create({
-  topShadow: {},
+  topShadow: {
+    alignSelf: "center",
+    width: 100,
+    height: 100,
+    shadowOffset: {
+      width: -6,
+      height: -6,
+    },
+    shadowOpacity: 0.22,
+    shadowRadius: 2.22,
+    elevation: 5,
+    borderColor: "#cecece",
+    borderRadius: 50,
+  },
+  bottomShadow: {
+    width: 100,
+    height: 100,
+    shadowOffset: {
+      width: 0,
+      height: 6,
+    },
+    shadowOpacity: 0.22,
+    shadowRadius: 6,
+    elevation: 5,
+    borderColor: "#cecece",
+    borderRadius: 50,
+  },
 
   inner: {
     backgroundColor: "#f4f4f4",
@@ -70,6 +67,5 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
-    padding: 20,
   },
 });

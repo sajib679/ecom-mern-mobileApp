@@ -68,7 +68,7 @@ const userReducer = (state = initState, action) => {
     case userConstants.GET_USER_ORDER_FAILURE:
       state = {
         ...state,
-        // error: action.payload.error,
+        error: action.payload.error,
         orderFetching: false,
       };
       break;

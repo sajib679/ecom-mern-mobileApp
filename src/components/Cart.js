@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, Image } from "react-native";
 import { Avatar, Badge } from "react-native-paper";
 import { Text } from "react-native-elements";
 import { MaterialCommunityIcons, AntDesign } from "@expo/vector-icons";
@@ -10,14 +10,25 @@ const Cart = ({ img, name, price, quantity, plus, minus, remove }) => {
   return (
     <TouchableWithoutFeedback onLongPress={remove}>
       <View style={styles.container}>
-        <Avatar.Image
-          size={70}
-          source={{
-            uri: img
-              ? imageUrl(img)
-              : "https://www.pacifictrellisfruit.com/wp-content/uploads/2016/04/default-placeholder-300x300.png",
+        <View
+          style={{
+            marginEnd: 1,
+            borderRadius: 10,
+            alignItems: "center",
+            justifyContent: "center",
           }}
-        />
+        >
+          <Image
+            resizeMode="contain"
+            style={{ width: 60, height: 60 }}
+            source={{
+              uri: img
+                ? imageUrl(img)
+                : "https://www.pacifictrellisfruit.com/wp-content/uploads/2016/04/default-placeholder-300x300.png",
+            }}
+          />
+        </View>
+
         <View style={[styles.productInfo, { justifyContent: "space-around" }]}>
           <Text
             numberOfLines={2}

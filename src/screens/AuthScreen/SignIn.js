@@ -26,7 +26,7 @@ const SignIn = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <NeoMorph elevation={1} size={100}>
+      <NeoMorph size={100}>
         <Text style={[styles.text, styles.mp, styles.alignC]}>Sign In</Text>
       </NeoMorph>
 
@@ -35,7 +35,7 @@ const SignIn = ({ navigation }) => {
           style={
             (styles.mp,
             {
-              elevation: 2,
+              elevation: 3,
               borderTopLeftRadius: 20,
               borderTopRightRadius: 20,
               backgroundColor: "#FAFAFA",
@@ -51,7 +51,7 @@ const SignIn = ({ navigation }) => {
           color="#E2FCFD"
           style={
             (styles.mp,
-            { elevation: 2, borderRadius: 20, backgroundColor: "#FAFAFA" })
+            { elevation: 3, borderRadius: 20, backgroundColor: "#FAFAFA" })
           }
           secureTextEntry
           label="Password"
@@ -93,8 +93,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
   },
   text: {
-    fontSize: 18,
-    textAlign: "center",
+    fontSize: 25,
   },
   mp: {
     marginVertical: 5,

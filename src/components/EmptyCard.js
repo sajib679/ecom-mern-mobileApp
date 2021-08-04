@@ -3,6 +3,7 @@ import { StyleSheet, View, Image } from "react-native";
 import { Title, Avatar } from "react-native-paper";
 
 const EmptyCard = ({ uri, message }) => {
+  console.log(uri);
   return (
     <View style={styles.card}>
       <View style={styles.container}>
@@ -27,9 +28,6 @@ const styles = StyleSheet.create({
     width: "100%",
     shadowColor: "#000",
     borderRadius: 10,
-    paddingHorizontal: 10,
-    marginVertical: 4,
-    marginHorizontal: 4,
   },
 
   tinyLogo: { width: 200, height: 200 },
@@ -39,7 +37,6 @@ const styles = StyleSheet.create({
     alignContent: "center",
     justifyContent: "center",
     padding: 2,
-    flex: 1,
     backgroundColor: "#fff",
   },
 

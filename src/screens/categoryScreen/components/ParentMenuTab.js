@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 import { useSelector } from "react-redux";
 import SubMenuCard from "./SubMenuCard";
+import Card from "../../../components/Card";
 import SnackBar from "../../../components/SnackBar";
 
 import PrdoductBySlug from "../../productScreen/ProductBySlug";
@@ -40,7 +41,9 @@ const ParentMenuTab = ({ route, navigation, slug }) => {
       renderItem={grid}
     />
   ) : (
-    <SubMenuCard catName={"No Category Available"} color=" #f5f5f5" />
+    <Card>
+      <Text>No Category Available</Text>
+    </Card>
   );
 };
 

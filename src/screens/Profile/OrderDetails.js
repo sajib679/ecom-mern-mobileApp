@@ -6,6 +6,7 @@ import Card from "../../components/Card";
 import Price from "../../components/Price";
 import { imageUrl } from "../../helpers/urlConfig";
 import { ScrollView } from "react-native-gesture-handler";
+import SectionHeader from "../../components/SectionHeader";
 
 const OrderDetails = ({ route, navigation }) => {
   const dispatch = useDispatch();
@@ -13,6 +14,7 @@ const OrderDetails = ({ route, navigation }) => {
 
   useEffect(() => {
     const payload = route.params;
+    console.log(payload);
 
     dispatch(getOrder(payload));
   }, []);
@@ -53,8 +55,9 @@ const OrderDetails = ({ route, navigation }) => {
   return (
     <ScrollView>
       <Card>
-        <View>
-          <Text style={styles.blackText}>OrderId: {orderDetails._id}</Text>
+        <View style={styles.flexRow}>
+          <Text style={styles.blackText}>OrderId:</Text>
+          <Text>{orderDetails._id}</Text>
         </View>
         <View style={styles.flexRow}>
           <View style={{ marginEnd: 10, flex: 1 }}>
@@ -103,10 +106,36 @@ const OrderDetails = ({ route, navigation }) => {
         </View>
       </Card>
       <Card>
-        <Text style={styles.blackText}>
-          Total Amount: {orderDetails.totalAmount} tk.
-        </Text>
+        <View style={styles.flexRow}>
+          <Text>Total Amount: {""}</Text>
+          <Text style={styles.blackText}>{orderDetails.totalAmount} tk.</Text>
+        </View>
       </Card>
+<<<<<<< HEAD
+      <SectionHeader text="Items" />
+      {orderDetails.items.map((item, index) => (
+        <Card key={index}>
+          <View style={styles.flexRow}>
+            <View
+              style={{
+                marginEnd: 10,
+                borderRadius: 10,
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <Image
+                resizeMode="contain"
+                style={{ width: 50, height: 50 }}
+                source={
+                  item.productId.productPictures.length > 0
+                    ? {
+                        uri: imageUrl(item.productId.productPictures[0].img),
+                      }
+                    : require("../../../src/public/images/404.png")
+                }
+              />
+=======
       <Card>
         {orderDetails.items.map((item, index) => (
           <Card key={index}>
@@ -115,13 +144,9 @@ const OrderDetails = ({ route, navigation }) => {
                 <Image
                   resizeMode="contain"
                   style={{ width: 50, height: 50 }}
-                  source={
-                    item.productId.productPictures.length > 0
-                      ? {
-                          uri: imageUrl(item.productId.productPictures[0].img),
-                        }
-                      : require("../../../src/public/images/404.png")
-                  }
+                  source={{
+                    uri: imageUrl(item.productId.productPictures[0].img),
+                  }}
                 />
               </View>
               <View style={{ flexShrink: 1, justifyContent: "space-between" }}>
@@ -131,10 +156,18 @@ const OrderDetails = ({ route, navigation }) => {
                   purchaseQuantity={item.purchasedQty}
                 />
               </View>
+>>>>>>> parent of fdc46a4... React Native -Android Working Succesfully except Icons
             </View>
-          </Card>
-        ))}
-      </Card>
+            <View style={{ flexShrink: 1, justifyContent: "space-between" }}>
+              <Text>{item.productId.name}</Text>
+              <Price
+                value={item.payablePrice}
+                purchaseQuantity={item.purchasedQty}
+              />
+            </View>
+          </View>
+        </Card>
+      ))}
     </ScrollView>
   );
 };

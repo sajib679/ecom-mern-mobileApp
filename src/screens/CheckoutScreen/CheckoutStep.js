@@ -3,7 +3,6 @@ import { StyleSheet, ScrollView, Text, View } from "react-native";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 
 const CheckoutStep = (props) => {
-  console.log(props.active);
   return (
     <View style={styles.checkoutContainer}>
       <TouchableWithoutFeedback onPress={props.onClick}>

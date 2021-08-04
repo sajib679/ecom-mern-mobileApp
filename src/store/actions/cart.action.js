@@ -10,6 +10,7 @@ export const getCartItems = () => {
       const res = await axios.post(`/user/getCartItems`);
       if (res.status === 200) {
         const { cartItems } = res.data;
+        console.log({ getCartItems: cartItems });
         if (cartItems) {
           dispatch({
             type: cartConstants.ADD_TO_CART_SUCCESS,
@@ -33,6 +34,7 @@ export const addToCart = (product, newQty = 1) => {
     const qty = cartItems[product._id]
       ? parseInt(cartItems[product._id].qty + newQty)
       : 1;
+    console.log(qty);
     cartItems[product._id] = {
       ...product,
       qty,
@@ -59,6 +61,8 @@ export const addToCart = (product, newQty = 1) => {
             payload,
           });
 
+          console.log(res);
+
           if (res.status === 202) {
             dispatch({ type: cartConstants.REMOVE_CART_ITEM_SUCCESS });
             dispatch(getCartItems());
@@ -76,6 +80,7 @@ export const addToCart = (product, newQty = 1) => {
       }
 
       const res = await axios.post(`/user/cart/addtocart`, payload);
+      console.log(res);
       if (res.status === 201) {
         dispatch(getCartItems());
       }
@@ -83,6 +88,7 @@ export const addToCart = (product, newQty = 1) => {
       setItem("cart", cartItems);
     }
 
+    console.log("addToCart::", cartItems);
     dispatch({
       type: cartConstants.ADD_TO_CART_SUCCESS,
       payload: { cartItems },
@@ -99,10 +105,10 @@ export const removeCartItem = (payload) => {
         dispatch({ type: cartConstants.REMOVE_CART_ITEM_SUCCESS });
         dispatch(getCartItems());
       } else {
-        // const { error } = res.data;
+        const { error } = res.data;
         dispatch({
           type: cartConstants.REMOVE_CART_ITEM_FAILURE,
-          // payload: { error },
+          payload: { error },
         });
       }
     } catch (error) {

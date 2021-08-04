@@ -29,6 +29,7 @@ const Checkout = ({ navigation }) => {
   useEffect(() => {
     // Subscribe for the focus Listener
     const unsubscribe = navigation.addListener("focus", () => {
+      setAddress([]);
       setSelectedAddress(null);
       setConfirmAddress(false);
       setOrderSummary(false);
@@ -41,7 +42,7 @@ const Checkout = ({ navigation }) => {
       // Unsubscribe for the focus Listener
       unsubscribe;
     };
-  }, [navigation, auth.authenticate]);
+  }, [navigation]);
 
   const handleNewAddress = () => {
     setNewAddress(!newAddress);
@@ -54,6 +55,7 @@ const Checkout = ({ navigation }) => {
   };
 
   const selectAddress = (addr) => {
+    //console.log(addr);
     const updatedAddress = address.map((adr) =>
       adr._id === addr._id
         ? { ...adr, selected: true }
@@ -102,6 +104,7 @@ const Checkout = ({ navigation }) => {
       paymentType: "cod",
     };
 
+    // console.log(payload);
     dispatch(addOrder(payload));
     setConfirmOrder(true);
   };
@@ -156,10 +159,10 @@ const Checkout = ({ navigation }) => {
       <CheckoutStep
         stepNumber={"2"}
         title={"DELIVERY ADDRESS"}
-        active={auth.authenticate && !confirmAddress}
+        active={!confirmAddress && auth.authenticate}
         body={
           <>
-            {auth.authenticate && newAddress == false && (
+            {newAddress == false && (
               <View>
                 {confirmAddress ? (
                   <View style={styles.addressContainer}>
@@ -201,6 +204,7 @@ const Checkout = ({ navigation }) => {
           onSubmitForm={onAddressSubmit}
           onCancel={() => {
             setNewAddress(false);
+            console.log("oncancel");
           }}
         />
       ) : auth.authenticate ? (

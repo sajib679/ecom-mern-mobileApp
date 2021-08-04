@@ -1,4 +1,14 @@
 rootProject.name = 'clientApp'
+<<<<<<< HEAD
+=======
+
+apply from: '../node_modules/react-native-unimodules/gradle.groovy'
+includeUnimodulesProjects()
+
+apply from: file("../node_modules/@react-native-community/cli-platform-android/native_modules.gradle");
+applyNativeModulesSettingsGradle(settings)
+
+>>>>>>> parent of fdc46a4... React Native -Android Working Succesfully except Icons
 include ':app'
 apply from: '../node_modules/react-native-unimodules/gradle.groovy'; includeUnimodulesProjects()
 apply from: file("../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesSettingsGradle(settings)

@@ -32,7 +32,7 @@ const SignUp = ({ navigation }) => {
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.container}>
-        <NeoMorph elevation={1} size={106}>
+        <NeoMorph size={100}>
           <Text style={[styles.text, styles.mp, styles.alignC]}>Sign Up</Text>
         </NeoMorph>
         <View style={{ marginVertical: 20, flex: 1, elevation: 20 }}>
@@ -55,7 +55,7 @@ const SignUp = ({ navigation }) => {
           />
           <TextInput
             underlineColor="transparent"
-            style={[styles.inputStyle, { elevation: 2 }]}
+            style={[styles.inputStyle, { elevation: 3 }]}
             placeholder="Email"
             value={email}
             onChangeText={(email) => setEmail(email)}
@@ -65,7 +65,7 @@ const SignUp = ({ navigation }) => {
             style={[
               styles.inputStyle,
               {
-                elevation: 2,
+                elevation: 3,
                 borderBottomLeftRadius: 20,
                 borderBottomRightRadius: 20,
               },
@@ -112,8 +112,7 @@ const styles = StyleSheet.create({
     marginVertical: 20,
   },
   text: {
-    fontSize: 18,
-    textAlign: "center",
+    fontSize: 25,
   },
   mp: {
     marginVertical: 1,
@@ -123,5 +122,5 @@ const styles = StyleSheet.create({
     // justifyContent: "center",
   },
 
-  inputStyle: { backgroundColor: "#fafafa", marginBottom: 0.4, elevation: 2 },
+  inputStyle: { backgroundColor: "#fafafa", marginBottom: 0.4, elevation: 3 },
 });

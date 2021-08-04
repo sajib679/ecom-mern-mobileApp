@@ -43,12 +43,11 @@ export default function App() {
   return (
     <Provider store={store}>
       <ThemeProvider>
-        <SafeAreaProvider>
-          <NavigationContainer>
-            <HomeScreen />
-            <StatusBar style="auto" />
-          </NavigationContainer>
-        </SafeAreaProvider>
+        <SafeAreaView />
+        <NavigationContainer>
+          <HomeScreen />
+        </NavigationContainer>
+        {/* <StatusBar style="auto" /> */}
       </ThemeProvider>
     </Provider>
   );

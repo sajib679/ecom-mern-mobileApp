@@ -2,6 +2,7 @@ import axios from "../../helpers/axios";
 import { productConstants, pageConstants, resetConstants } from "../constant";
 
 export const getProductsByslug = (slug) => {
+  console.log(slug);
   return async (dispatch) => {
     dispatch({ type: productConstants.GET_PRODUCT_BY_SLUG_REQUEST });
     const res = await axios.get(`product/${slug}`);
@@ -13,7 +14,7 @@ export const getProductsByslug = (slug) => {
     } else {
       dispatch({
         type: productConstants.GET_PRODUCT_BY_SLUG_FAILURE,
-        // payload: res.data.error,
+        payload: res.data.error,
       });
     }
   };
@@ -24,6 +25,7 @@ export const getProductPage = (params) => {
   return async (dispatch) => {
     dispatch({ type: pageConstants.GET_PAGE_REQUEST });
     const res = await axios.get(`page/${cid}/${type}`);
+    console.log(res);
     if (res.status === 200) {
       dispatch({
         type: pageConstants.GET_PAGE_SUCCESS,
@@ -32,13 +34,15 @@ export const getProductPage = (params) => {
     } else {
       dispatch({
         type: pageConstants.GET_PAGE_FAILURE,
-        // payload: res.data.error,
+        payload: res.data.error,
       });
     }
   };
 };
 
 export const getProductsById = (productId) => {
+  console.log(productId);
+
   return async (dispatch) => {
     dispatch({ type: productConstants.GET_PRODUCT_BY_ID_REQUEST });
     const res = await axios.get(`p/product/${productId}`);
@@ -50,13 +54,15 @@ export const getProductsById = (productId) => {
     } else {
       dispatch({
         type: productConstants.GET_PRODUCT_BY_ID_FAILURE,
-        // payload: res.data.error,
+        payload: res.data.error,
       });
     }
   };
 };
 
 export const getProductsByName = (searchTerm) => {
+  console.log(searchTerm);
+
   return async (dispatch) => {
     dispatch({ type: productConstants.GET_PRODUCT_BY_NAME_REQUEST });
     const res = await axios.get(`search/${searchTerm}`);
@@ -68,12 +74,12 @@ export const getProductsByName = (searchTerm) => {
     } else if (res.status === 203) {
       dispatch({
         type: productConstants.GET_PRODUCT_BY_NAME_FAILURE,
-        // payload: res.data.message,
+        payload: res.data.message,
       });
     } else {
       dispatch({
         type: productConstants.GET_PRODUCT_BY_NAME_FAILURE,
-        // payload: res.data.error,
+        payload: res.data.error,
       });
     }
   };

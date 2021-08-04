@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import SubMenuCard from "./components/SubMenuCard";
 import SnackBar from "../../components/SnackBar";
 import PrdoductBySlug from "../productScreen/ProductBySlug";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const screenWidth = Math.round(Dimensions.get("window").width);
 const screenHeight = Math.round(Dimensions.get("window").height);
@@ -19,7 +20,10 @@ const Category = ({ route, navigation }) => {
     setSubMenu(subCat);
   }, []);
 
+  console.log("from Cat:", subMenu);
+
   const grid = ({ item }) => {
+    console.log(item.slug);
     return (
       <SubMenuCard
         catName={item.name}

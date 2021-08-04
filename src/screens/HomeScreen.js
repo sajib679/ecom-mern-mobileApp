@@ -2,18 +2,20 @@ import React, { useEffect } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { Badge } from "react-native-paper";
 import { useSelector, useDispatch } from "react-redux";
-import { getInitialData } from "../store/actions/initialData.action";
-import { SafeAreaView } from "react-native-safe-area-context";
+import {
+  getInitialData,
+  getCartItems,
+  isUserLoggedIn,
+  getAllBanner,
+} from "../store/actions";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import CategoryScreen from "./categoryScreen/index";
 import ProductScreen from "./productScreen/Index";
 import User from "./User/index";
-import { isUserLoggedIn } from "../store/actions/auth.action";
-
-import { FontAwesome, MaterialCommunityIcons } from "@expo/vector-icons";
-
-import { getCartItems } from "../store/actions";
 import CheckoutScreen from "./CheckoutScreen";
+import { FontAwesome, MaterialCommunityIcons } from "@expo/vector-icons";
+import { SafeAreaView } from "react-native-safe-area-context";
+
 const Tab = createBottomTabNavigator();
 
 const HomeScreen = () => {
@@ -24,6 +26,7 @@ const HomeScreen = () => {
   useEffect(() => {
     dispatch(isUserLoggedIn());
     dispatch(getInitialData());
+    dispatch(getAllBanner());
   }, []);
 
   useEffect(() => {
@@ -34,8 +37,6 @@ const HomeScreen = () => {
 
   return (
     <>
-      <SafeAreaView></SafeAreaView>
-
       <Tab.Navigator lazy>
         <Tab.Screen
           name="Product"
@@ -114,7 +115,7 @@ const HomeScreen = () => {
                       <MaterialCommunityIcons
                         name="login"
                         size={24}
-                        color="black"
+                        color="gray"
                       />
                     );
                   },

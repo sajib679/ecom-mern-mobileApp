@@ -4,7 +4,7 @@ const initState = {
   error: null,
   categories: [],
   categoryList: [],
-  loading: true,
+  loading: false,
   isLoaded: false,
 };
 
@@ -71,9 +71,7 @@ const categoryReducer = (state = initState, action) => {
       state = {
         ...initState,
         loading: false,
-        isLoaded: false,
-
-        // error: action.payload.error,
+        error: action.payload.error,
       };
       break;
 
@@ -100,6 +98,7 @@ const categoryReducer = (state = initState, action) => {
         newCategory
       );
 
+      console.log(updatedCategoryList);
       state = {
         ...state,
         loading: false,
@@ -110,7 +109,7 @@ const categoryReducer = (state = initState, action) => {
       state = {
         ...initState,
         loading: false,
-        // error: action.payload.error,
+        error: action.payload.error,
       };
       break;
     default:

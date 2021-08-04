@@ -5,6 +5,7 @@ import productReducer from "./product.reducers";
 import cartReducer from "./cart.reducers";
 import categoryReducer from "./category.reducers";
 import searchReducer from "./search.reducers";
+import bannerReducer from "./banner.reducer";
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   product: productReducer,
   cart: cartReducer,
   search: searchReducer,
+  banner: bannerReducer,
 });
 
 export default rootReducer;

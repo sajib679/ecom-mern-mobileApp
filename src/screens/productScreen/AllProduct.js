@@ -6,8 +6,14 @@ import Loading from "../LoadingScreen";
 import { addToCart } from "../../store/actions/cart.action";
 import SearchComp from "../SearchedProduct/index";
 import { RefreshControl, FlatList, ScrollView } from "react-native";
-import { getInitialData } from "../../store/actions";
+<<<<<<< HEAD
+import { getAllBanner, getInitialData } from "../../store/actions";
 import NoResponse from "../../components/NoResponse";
+import Carousel from "../../components/Carousel";
+import SectionHeader from "../../components/SectionHeader";
+=======
+import { getInitialData } from "../../store/actions";
+>>>>>>> parent of fdc46a4... React Native -Android Working Succesfully except Icons
 
 const wait = (timeout) => {
   return new Promise((resolve) => setTimeout(resolve, timeout));
@@ -16,10 +22,13 @@ const wait = (timeout) => {
 const AllProduct = ({ navigation }) => {
   const [refreshing, setRefreshing] = React.useState(false);
   const product = useSelector((state) => state.product);
+  const banners = useSelector((state) => state.banner.banners);
+  const [bannerImages, setBannerImages] = useState([]);
   const [allProduct, setallProduct] = useState([]);
   const dispatch = useDispatch();
 
   useEffect(() => {
+    setBannerImages(banners[0]?.bannerImages);
     setallProduct(product.products);
   }, [product.isLoaded, refreshing]);
 
@@ -27,22 +36,18 @@ const AllProduct = ({ navigation }) => {
     setRefreshing(true);
     dispatch(getInitialData());
     setallProduct(product.products);
-    wait(100).then(() => setRefreshing(false));
+    wait(1000).then(() => setRefreshing(false));
   }, []);
 
   const addCart = (item) => {
-    const { _id, name, price, productPictures } = item;
-    let img;
-    if (productPictures.length > 0) {
-      img = productPictures[0].img;
-    } else {
-      img = null;
-    }
+    const { _id, name, price } = item;
+    const pictures = item.productPictures;
+    const img = pictures[0].img;
     dispatch(addToCart({ _id, name, price, img }));
   };
 
   const renderProduct = ({ item }) => {
-    const { _id, name, price, productPictures, quantity } = item;
+    const { _id, name, price, productPictures } = item;
 
     return (
       <ProductCard
@@ -61,30 +66,113 @@ const AllProduct = ({ navigation }) => {
     );
   };
 
+<<<<<<< HEAD
   if (product.isLoaded) {
     return (
       <>
         <SearchComp navigation={navigation}></SearchComp>
-        <FlatList
-          data={allProduct}
-          keyExtractor={(item) => item._id}
-          numColumns={3}
-          renderItem={renderProduct}
-          refreshControl={
-            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-          }
-        />
+
+        <ScrollView style={{ marginBottom: 5 }}>
+          {bannerImages?.length > 0 && (
+            <Carousel data={bannerImages} autoplay={true} />
+          )}
+
+          <SectionHeader button="SEE ALL" text="Most Recent" />
+          <FlatList
+            pagingEnabled={true}
+            showsHorizontalScrollIndicator={false}
+            horizontal={true}
+            data={allProduct}
+            keyExtractor={(item) => item._id}
+            renderItem={renderProduct}
+            refreshControl={
+              <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+            }
+          />
+
+          <SectionHeader button="SEE ALL" text="Highest Review" />
+          <FlatList
+            pagingEnabled={true}
+            showsHorizontalScrollIndicator={false}
+            horizontal={true}
+            data={allProduct}
+            keyExtractor={(item) => item._id}
+            renderItem={renderProduct}
+            refreshControl={
+              <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+            }
+          />
+
+          <SectionHeader button="SEE ALL" text="Top Selling" />
+          <FlatList
+            pagingEnabled={true}
+            showsHorizontalScrollIndicator={false}
+            horizontal={true}
+            data={allProduct}
+            keyExtractor={(item) => item._id}
+            renderItem={renderProduct}
+            refreshControl={
+              <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+            }
+          />
+
+          <SectionHeader button="SEE ALL" text="Top Brand" />
+          <FlatList
+            pagingEnabled={true}
+            showsHorizontalScrollIndicator={false}
+            horizontal={true}
+            data={allProduct}
+            keyExtractor={(item) => item._id}
+            renderItem={renderProduct}
+            refreshControl={
+              <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+            }
+          />
+          <SectionHeader button="SEE ALL" text="Offer" />
+          <FlatList
+            pagingEnabled={true}
+            showsHorizontalScrollIndicator={false}
+            horizontal={true}
+            data={allProduct}
+            keyExtractor={(item) => item._id}
+            renderItem={renderProduct}
+            refreshControl={
+              <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+            }
+          />
+        </ScrollView>
       </>
     );
   }
 
   return !product.loading ? (
     <NoResponse />
+=======
+  return product.isLoaded ? (
+    <>
+      <SearchComp navigation={navigation}></SearchComp>
+      <FlatList
+        data={allProduct}
+        keyExtractor={(item) => item._id}
+        numColumns={3}
+        renderItem={renderProduct}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
+      />
+    </>
+>>>>>>> parent of fdc46a4... React Native -Android Working Succesfully except Icons
   ) : (
-    <Loading visible={product.loading} />
+    <Loading visible={!product.isLoaded} />
   );
 };
 
 export default AllProduct;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  screenView: {
+    flexGrow: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});

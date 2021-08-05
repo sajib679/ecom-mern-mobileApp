@@ -35,17 +35,12 @@ const ProductDetails = ({ route, navigation }) => {
         name={productDetails.name}
         price={productDetails.price}
         quantity={productDetails.quantity}
-<<<<<<< HEAD
         images={
           productDetails.productPictures.length > 0 &&
           productDetails.productPictures
         }
         description={productDetails.description}
         goBack={() => {
-=======
-        img={productDetails.productPictures[0].img}
-        viewDetails={() => {
->>>>>>> parent of fdc46a4... React Native -Android Working Succesfully except Icons
           dispatch(resetProductDetails());
           navigation.goBack();
         }}

@@ -15,7 +15,6 @@ const axiosInstance = axios.create({
   },
 });
 
-<<<<<<< HEAD
 axiosInstance.interceptors.request.use(
   (req) => {
     console.log(req);
@@ -33,36 +32,19 @@ axiosInstance.interceptors.request.use(
     // Do something with request error
     console.log(error);
     return error;
-=======
-axiosInstance.interceptors.request.use((req) => {
-  const { auth } = store.getState();
-  if (auth.token) {
-    req.headers.Authorization = `Bearer ${auth.token}`;
->>>>>>> parent of fdc46a4... React Native -Android Working Succesfully except Icons
   }
-  return req;
-});
+);
 
 axiosInstance.interceptors.response.use(
   (res) => {
     return res;
   },
   (error) => {
-<<<<<<< HEAD
     if (error.response) {
       const { status } = error.response;
       if (status === 599) {
         store.dispatch({ type: authConstants.LOGOUT_SUCCESS });
       }
-=======
-    const { status } = error.response;
-    console.log(error.response);
-
-    if (status === 599) {
-      removeItem("token");
-      removeItem("user");
-      store.dispatch({ type: authConstants.LOGOUT_SUCCESS });
->>>>>>> parent of fdc46a4... React Native -Android Working Succesfully except Icons
     }
 
     return Promise.reject(error);

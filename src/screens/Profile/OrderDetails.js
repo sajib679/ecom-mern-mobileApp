@@ -111,7 +111,6 @@ const OrderDetails = ({ route, navigation }) => {
           <Text style={styles.blackText}>{orderDetails.totalAmount} tk.</Text>
         </View>
       </Card>
-<<<<<<< HEAD
       <SectionHeader text="Items" />
       {orderDetails.items.map((item, index) => (
         <Card key={index}>
@@ -135,28 +134,6 @@ const OrderDetails = ({ route, navigation }) => {
                     : require("../../../src/public/images/404.png")
                 }
               />
-=======
-      <Card>
-        {orderDetails.items.map((item, index) => (
-          <Card key={index}>
-            <View style={styles.flexRow}>
-              <View style={{ marginEnd: 10, borderRadius: 10 }}>
-                <Image
-                  resizeMode="contain"
-                  style={{ width: 50, height: 50 }}
-                  source={{
-                    uri: imageUrl(item.productId.productPictures[0].img),
-                  }}
-                />
-              </View>
-              <View style={{ flexShrink: 1, justifyContent: "space-between" }}>
-                <Text>{item.productId.name}</Text>
-                <Price
-                  value={item.payablePrice}
-                  purchaseQuantity={item.purchasedQty}
-                />
-              </View>
->>>>>>> parent of fdc46a4... React Native -Android Working Succesfully except Icons
             </View>
             <View style={{ flexShrink: 1, justifyContent: "space-between" }}>
               <Text>{item.productId.name}</Text>

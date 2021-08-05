@@ -5,12 +5,8 @@
     "ios": "react-native run-ios",
     "web": "expo start --web",
     "start": "expo start",
-<<<<<<< HEAD
     "test": "jest",
     "android-linux": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res && react-native run-android"
-=======
-    "test": "jest"
->>>>>>> parent of fdc46a4... React Native -Android Working Succesfully except Icons
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.12.1",

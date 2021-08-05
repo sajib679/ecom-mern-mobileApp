@@ -4,10 +4,7 @@ import { useSelector } from "react-redux";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import ParentMenuTab from "./components/ParentMenuTab";
 import Loading from "../LoadingScreen";
-<<<<<<< HEAD
 import NoResponse from "../../components/NoResponse";
-=======
->>>>>>> parent of fdc46a4... React Native -Android Working Succesfully except Icons
 const Tab = createMaterialTopTabNavigator();
 
 const ParentMenu = () => {

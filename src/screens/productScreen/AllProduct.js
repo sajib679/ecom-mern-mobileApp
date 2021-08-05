@@ -6,14 +6,10 @@ import Loading from "../LoadingScreen";
 import { addToCart } from "../../store/actions/cart.action";
 import SearchComp from "../SearchedProduct/index";
 import { RefreshControl, FlatList, ScrollView } from "react-native";
-<<<<<<< HEAD
 import { getAllBanner, getInitialData } from "../../store/actions";
 import NoResponse from "../../components/NoResponse";
 import Carousel from "../../components/Carousel";
 import SectionHeader from "../../components/SectionHeader";
-=======
-import { getInitialData } from "../../store/actions";
->>>>>>> parent of fdc46a4... React Native -Android Working Succesfully except Icons
 
 const wait = (timeout) => {
   return new Promise((resolve) => setTimeout(resolve, timeout));
@@ -66,7 +62,6 @@ const AllProduct = ({ navigation }) => {
     );
   };
 
-<<<<<<< HEAD
   if (product.isLoaded) {
     return (
       <>
@@ -147,21 +142,6 @@ const AllProduct = ({ navigation }) => {
 
   return !product.loading ? (
     <NoResponse />
-=======
-  return product.isLoaded ? (
-    <>
-      <SearchComp navigation={navigation}></SearchComp>
-      <FlatList
-        data={allProduct}
-        keyExtractor={(item) => item._id}
-        numColumns={3}
-        renderItem={renderProduct}
-        refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-        }
-      />
-    </>
->>>>>>> parent of fdc46a4... React Native -Android Working Succesfully except Icons
   ) : (
     <Loading visible={!product.isLoaded} />
   );

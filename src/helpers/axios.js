@@ -18,8 +18,6 @@ const axiosInstance = axios.create({
 axiosInstance.interceptors.request.use(
   (req) => {
     console.log(req);
-    // const CancelToken = axios.CancelToken;
-
     const { auth } = store.getState();
     if (auth.token) {
       req.headers.Authorization = `Bearer ${auth.token}`;
@@ -47,7 +45,7 @@ axiosInstance.interceptors.response.use(
       }
     }
 
-    return Promise.reject(error);
+    return error.response;
   }
 );
 export default axiosInstance;

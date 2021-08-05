@@ -14,6 +14,9 @@ import { createStackNavigator } from "@react-navigation/stack";
 import HomeScreen from "./src/screens/HomeScreen";
 const stack = createStackNavigator();
 
+import { Constants } from "react-native-unimodules";
+console.log("From App.js", Constants.systemFonts);
+
 function cacheFonts(fonts) {
   return fonts.map((font) => Font.loadAsync(font));
 }

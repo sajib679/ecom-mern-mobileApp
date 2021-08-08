@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import {
   StyleSheet,
   Text,
@@ -8,23 +9,18 @@ import {
 } from "react-native";
 import { getInitialData } from "../store/actions";
 
-const wait = (timeout) => {
-  return new Promise((resolve) => setTimeout(resolve, timeout));
-};
-
 const NoResponse = ({ children }) => {
   const [refreshing, setRefreshing] = React.useState(false);
-
+  const dispatch = useDispatch();
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
     dispatch(getInitialData());
-
-    wait(1000).then(() => setRefreshing(false));
   }, []);
 
   return (
     <ScrollView
       style={styles.box}
+      contentContainerStyle={{ justifyContent: "center", alignItems: "center" }}
       refreshControl={
         <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
       }
@@ -40,8 +36,6 @@ export default NoResponse;
 const styles = StyleSheet.create({
   box: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
     textAlign: "center",
   },
 });

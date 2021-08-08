@@ -10,9 +10,8 @@ import AppLoading from "expo-app-loading";
 import * as Font from "expo-font";
 import { FontAwesome, MaterialCommunityIcons } from "@expo/vector-icons";
 import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
+
 import HomeScreen from "./src/screens/HomeScreen";
-const stack = createStackNavigator();
 
 import { Constants } from "react-native-unimodules";
 console.log("From App.js", Constants.systemFonts);

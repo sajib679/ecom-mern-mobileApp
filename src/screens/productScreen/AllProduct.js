@@ -10,6 +10,7 @@ import { getAllBanner, getInitialData } from "../../store/actions";
 import NoResponse from "../../components/NoResponse";
 import Carousel from "../../components/Carousel";
 import SectionHeader from "../../components/SectionHeader";
+import LottieView from "lottie-react-native";
 
 const wait = (timeout) => {
   return new Promise((resolve) => setTimeout(resolve, timeout));
@@ -17,22 +18,23 @@ const wait = (timeout) => {
 
 const AllProduct = ({ navigation }) => {
   const [refreshing, setRefreshing] = React.useState(false);
-  const product = useSelector((state) => state.product);
   const banners = useSelector((state) => state.banner.banners);
   const [bannerImages, setBannerImages] = useState([]);
   const [allProduct, setallProduct] = useState([]);
   const dispatch = useDispatch();
+  const { products } = useSelector((state) => state.product);
+  const { isLoaded, loading } = useSelector((state) => state.initData);
 
   useEffect(() => {
     setBannerImages(banners[0]?.bannerImages);
-    setallProduct(product.products);
-  }, [product.isLoaded, refreshing]);
+    setallProduct(products);
+  }, [refreshing, isLoaded, allProduct]);
 
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
     dispatch(getInitialData());
-    setallProduct(product.products);
-    wait(1000).then(() => setRefreshing(false));
+    setallProduct(products);
+    wait(10).then(() => setRefreshing(false));
   }, []);
 
   const addCart = (item) => {
@@ -62,12 +64,28 @@ const AllProduct = ({ navigation }) => {
     );
   };
 
-  if (product.isLoaded) {
+  if (loading) {
+    return (
+      <LottieView
+        source={require("../../public/assets/lottie/loading-compass.json")}
+        style={{ margin: 20 }}
+        autoPlay
+        loop
+      />
+    );
+  }
+
+  if (isLoaded && allProduct.length > 0) {
     return (
       <>
         <SearchComp navigation={navigation}></SearchComp>
 
-        <ScrollView style={{ marginBottom: 5 }}>
+        <ScrollView
+          style={{ marginBottom: 5 }}
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          }
+        >
           {bannerImages?.length > 0 && (
             <Carousel data={bannerImages} autoplay={true} />
           )}
@@ -80,9 +98,6 @@ const AllProduct = ({ navigation }) => {
             data={allProduct}
             keyExtractor={(item) => item._id}
             renderItem={renderProduct}
-            refreshControl={
-              <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-            }
           />
 
           <SectionHeader button="SEE ALL" text="Highest Review" />
@@ -93,9 +108,6 @@ const AllProduct = ({ navigation }) => {
             data={allProduct}
             keyExtractor={(item) => item._id}
             renderItem={renderProduct}
-            refreshControl={
-              <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-            }
           />
 
           <SectionHeader button="SEE ALL" text="Top Selling" />
@@ -106,9 +118,6 @@ const AllProduct = ({ navigation }) => {
             data={allProduct}
             keyExtractor={(item) => item._id}
             renderItem={renderProduct}
-            refreshControl={
-              <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-            }
           />
 
           <SectionHeader button="SEE ALL" text="Top Brand" />
@@ -119,9 +128,6 @@ const AllProduct = ({ navigation }) => {
             data={allProduct}
             keyExtractor={(item) => item._id}
             renderItem={renderProduct}
-            refreshControl={
-              <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-            }
           />
           <SectionHeader button="SEE ALL" text="Offer" />
           <FlatList
@@ -131,20 +137,13 @@ const AllProduct = ({ navigation }) => {
             data={allProduct}
             keyExtractor={(item) => item._id}
             renderItem={renderProduct}
-            refreshControl={
-              <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-            }
           />
         </ScrollView>
       </>
     );
   }
 
-  return !product.loading ? (
-    <NoResponse />
-  ) : (
-    <Loading visible={!product.isLoaded} />
-  );
+  return null;
 };
 
 export default AllProduct;

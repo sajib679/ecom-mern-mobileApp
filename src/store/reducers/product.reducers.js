@@ -2,15 +2,9 @@ import { productConstants, pageConstants, resetConstants } from "../constant";
 
 const initialState = {
   products: [],
-  productsByPrice: {
-    // under5k: [],
-    // under10k: [],
-    // under15k: [],
-    // under20k: [],
-    // above20k: [],
-  },
+  productsByPrice: {},
   productDetails: {},
-  loading: true,
+  loading: false,
   pageReguest: false,
   page: {},
   error: null,
@@ -25,6 +19,7 @@ const productReducer = (state = initialState, action) => {
       state = {
         ...state,
         loading: true,
+        isLoaded: false,
       };
       break;
     case productConstants.GET_PRODUCT_SUCCESS:
@@ -39,7 +34,7 @@ const productReducer = (state = initialState, action) => {
       state = {
         ...initialState,
         loading: false,
-        isLoaded: false,
+        isLoaded: true,
         error: action.payload.error,
       };
       break;
@@ -47,6 +42,8 @@ const productReducer = (state = initialState, action) => {
     case productConstants.GET_PRODUCT_BY_SLUG_REQUEST:
       state = {
         ...state,
+        loading: true,
+        isLoaded: false,
         productsByPrice: initialState.productsByPrice,
       };
 
@@ -55,6 +52,7 @@ const productReducer = (state = initialState, action) => {
       state = {
         ...state,
         loading: false,
+        isLoaded: true,
       };
 
       break;
@@ -78,7 +76,6 @@ const productReducer = (state = initialState, action) => {
     case pageConstants.GET_PAGE_FAILURE:
       state = {
         ...state,
-        loading: false,
         pageReguest: false,
       };
 
@@ -86,7 +83,6 @@ const productReducer = (state = initialState, action) => {
     case pageConstants.GET_PAGE_SUCCESS:
       state = {
         ...state,
-        loading: false,
         page: action.payload.page,
         pageReguest: false,
       };
@@ -95,6 +91,7 @@ const productReducer = (state = initialState, action) => {
     case productConstants.GET_PRODUCT_BY_ID_REQUEST:
       state = {
         ...state,
+        loading: true,
       };
 
       break;
@@ -118,12 +115,14 @@ const productReducer = (state = initialState, action) => {
     case resetConstants.RESET_PRODUCT_DETAILS:
       state = {
         ...state,
-        productDetails: initialState.productDetails,
+        loading: false,
+        productDetails: [],
       };
 
     case productConstants.GET_PRODUCT_BY_NAME_REQUEST:
       state = {
         ...state,
+        loading: true,
       };
 
       break;
@@ -149,7 +148,7 @@ const productReducer = (state = initialState, action) => {
       state = {
         ...state,
         loading: false,
-        searchedProduct: initialState.searchedProduct,
+        searchedProduct: [],
       };
 
       break;

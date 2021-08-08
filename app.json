@@ -6,8 +6,10 @@
     "slug": "clientApp",
     "version": "1.0.1",
     "assetBundlePatterns": [
-      "assets/images/*"
+      "src/public/assets/*",
+      "src/public/images/*"
     ]
+
   }
 }
 

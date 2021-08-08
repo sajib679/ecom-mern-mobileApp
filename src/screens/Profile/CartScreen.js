@@ -27,9 +27,9 @@ const CartScreen = ({ route, navigation, onlyCartItems }) => {
   };
 
   const onQuantityDecrement = (_id, qty) => {
-    if (qty < 1) {
-      dispatch(removeCartItem({ productId: _id }));
-    }
+    // if (qty < 1) {
+    //   dispatch(removeCartItem({ productId: _id }));
+    // }
     const { name, price, img } = cartItems[_id];
     dispatch(addToCart({ _id, name, price, img }, -1));
   };

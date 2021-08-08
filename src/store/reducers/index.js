@@ -6,10 +6,12 @@ import cartReducer from "./cart.reducers";
 import categoryReducer from "./category.reducers";
 import searchReducer from "./search.reducers";
 import bannerReducer from "./banner.reducer";
+import initDataReducer from "./initialdata.reducers";
 
 const rootReducer = combineReducers({
   auth: authReducer,
   user: userReducer,
+  initData: initDataReducer,
   category: categoryReducer,
   product: productReducer,
   cart: cartReducer,

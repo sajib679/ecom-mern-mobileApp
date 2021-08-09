@@ -6,8 +6,8 @@ const Price = (props) => {
   return (
     <View style={styles.flexRow}>
       {/* <BiRupee /> */}
-      <Text>{props.value}</Text>
-      <Text>x{props.purchaseQuantity}</Text>
+      <Text style={styles.textFocus}>{props.value}</Text>
+      <Text style={styles.textFocus}>x{props.purchaseQuantity}</Text>
     </View>
   );
 };
@@ -16,4 +16,6 @@ export default Price;
 
 const styles = StyleSheet.create({
   flexRow: { flexDirection: "row" },
+  textLight: {},
+  textFocus: { color: "black" },
 });

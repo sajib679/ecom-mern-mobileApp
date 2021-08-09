@@ -7,10 +7,14 @@ import Price from "../../components/Price";
 import { imageUrl } from "../../helpers/urlConfig";
 import { ScrollView } from "react-native-gesture-handler";
 import SectionHeader from "../../components/SectionHeader";
+import { formatDate, formatDate2 } from "./helper";
+import LottieView from "lottie-react-native";
 
 const OrderDetails = ({ route, navigation }) => {
   const dispatch = useDispatch();
-  const orderDetails = useSelector((state) => state.user.orderDetails);
+  const { orderDetails, orderDetailsFetching } = useSelector(
+    (state) => state.user
+  );
 
   useEffect(() => {
     const payload = route.params;
@@ -19,34 +23,16 @@ const OrderDetails = ({ route, navigation }) => {
     dispatch(getOrder(payload));
   }, []);
 
-  const formatDate = (date) => {
-    if (date) {
-      const d = new Date(date);
-      return `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;
-    }
-    return "";
-  };
-
-  const formatDate2 = (date) => {
-    const month = [
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "May",
-      "June",
-      "July",
-      "Aug",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec",
-    ];
-    if (date) {
-      const d = new Date(date);
-      return `${month[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
-    }
-  };
+  if (orderDetailsFetching) {
+    return (
+      <LottieView
+        source={require("../../public/assets/lottie/airplane.json")}
+        style={{ margin: 20 }}
+        autoPlay
+        loop
+      />
+    );
+  }
 
   if (!(orderDetails && orderDetails.address)) {
     return null;

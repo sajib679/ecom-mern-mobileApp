@@ -4,12 +4,13 @@ const initialState = {
   products: [],
   productsByPrice: {},
   productDetails: {},
+  searchedProduct: [],
+  loadingByPrice: false,
   loading: false,
   pageReguest: false,
   page: {},
   error: null,
   isLoaded: false,
-  searchedProduct: [],
   message: "",
 };
 
@@ -42,26 +43,24 @@ const productReducer = (state = initialState, action) => {
     case productConstants.GET_PRODUCT_BY_SLUG_REQUEST:
       state = {
         ...state,
-        loading: true,
-        isLoaded: false,
-        productsByPrice: initialState.productsByPrice,
+        loadingByPrice: true,
+        productsByPrice: {},
       };
 
       break;
     case productConstants.GET_PRODUCT_BY_SLUG_FAILURE:
       state = {
         ...state,
-        loading: false,
-        isLoaded: true,
+        loadingByPrice: false,
+        productsByPrice: {},
       };
 
       break;
     case productConstants.GET_PRODUCT_BY_SLUG_SUCCESS:
       state = {
         ...state,
-        loading: false,
+        loadingByPrice: false,
         productsByPrice: { ...action.payload.productsByPrice },
-        isLoaded: true,
       };
 
       break;

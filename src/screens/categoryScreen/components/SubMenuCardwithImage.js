@@ -1,7 +1,14 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, TouchableWithoutFeedback, View } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  TouchableWithoutFeedback,
+  View,
+  Image,
+} from "react-native";
+import { imageUrl } from "../../../helpers/urlConfig";
 
-const CategoryGrid = ({ color, catName, onTap }) => {
+const CategoryGrid = ({ color, catName, onTap, img }) => {
   const [height, setheight] = useState();
 
   const findwidth = (event) => {
@@ -15,7 +22,7 @@ const CategoryGrid = ({ color, catName, onTap }) => {
         style={[
           styles.category,
           {
-            backgroundColor: `${color ? "#FAF9F6" : "tomato"}`,
+            backgroundColor: `${color ? "tomato" : "#FAF9F6"}`,
             height: height,
             width: "100%",
             maxWidth: "31%",
@@ -24,6 +31,12 @@ const CategoryGrid = ({ color, catName, onTap }) => {
           },
         ]}
       >
+        {img && (
+          <Image
+            style={{ width: "80%", height: "80%" }}
+            source={{ uri: imageUrl(img) }}
+          ></Image>
+        )}
         {catName && <Text style={styles.catText}>{catName}</Text>}
       </View>
     </TouchableWithoutFeedback>
@@ -35,7 +48,7 @@ export default CategoryGrid;
 const styles = StyleSheet.create({
   category: {
     flex: 1,
-    padding: 4,
+    padding: 5,
     alignItems: "center",
     justifyContent: "center",
     width: "95%",

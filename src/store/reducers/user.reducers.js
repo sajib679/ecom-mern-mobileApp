@@ -7,6 +7,7 @@ const initState = {
   error: null,
   loading: false,
   orderFetching: false,
+  orderDetailsFetching: false,
   placedOrderId: null,
 };
 
@@ -73,14 +74,24 @@ const userReducer = (state = initState, action) => {
       };
       break;
     case userConstants.GET_USER_ORDER_DETAILS_REQUEST:
+      state = {
+        ...state,
+        orderDetails: {},
+        orderDetailsFetching: true,
+      };
       break;
     case userConstants.GET_USER_ORDER_DETAILS_SUCCESS:
       state = {
         ...state,
         orderDetails: action.payload.order,
+        orderDetailsFetching: false,
       };
       break;
     case userConstants.GET_USER_ORDER_DETAILS_FAILURE:
+      state = {
+        ...state,
+        orderDetailsFetching: false,
+      };
       break;
     case userConstants.ADD_USER_ORDER_SUCCESS:
       state = {

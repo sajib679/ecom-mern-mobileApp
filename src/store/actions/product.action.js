@@ -2,7 +2,6 @@ import axios from "../../helpers/axios";
 import { productConstants, pageConstants, resetConstants } from "../constant";
 
 export const getProductsByslug = (slug) => {
-  console.log(slug);
   return async (dispatch) => {
     dispatch({ type: productConstants.GET_PRODUCT_BY_SLUG_REQUEST });
     const res = await axios.get(`product/${slug}`);

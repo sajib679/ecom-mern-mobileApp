@@ -1,19 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 import ProductCard from "../../components/ProductCard";
-import { imageUrl } from "../../helpers/urlConfig";
-import Loading from "../LoadingScreen";
+import LottieView from "lottie-react-native";
+import NoResponse from "../../components/NoResponse";
 import { getProductsByslug } from "../../store/actions/product.action";
 import { addToCart } from "../../store/actions";
 const PrdoductBySlug = ({ slug, navigation }) => {
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(getProductsByslug(slug));
   }, []);
-
-  const prdoductBySlug = useSelector((state) => state.product.productsByPrice);
+  const { productsByPrice, loadingByPrice } = useSelector(
+    (state) => state.product
+  );
 
   const renderProduct = ({ item }) => {
     const { _id, name, price, productPictures, quantity } = item;
@@ -44,13 +46,24 @@ const PrdoductBySlug = ({ slug, navigation }) => {
     );
   };
 
-  return prdoductBySlug ? (
-    Object.keys(prdoductBySlug).map(
+  if (loadingByPrice) {
+    return (
+      <LottieView
+        source={require("../../public/assets/lottie/rocket-launch.json")}
+        style={{ margin: 20 }}
+        autoPlay
+        loop
+      />
+    );
+  }
+
+  return !loadingByPrice && Object.keys(productsByPrice).length > 0 ? (
+    Object.keys(productsByPrice).map(
       (key, index) =>
-        prdoductBySlug[key].length > 0 && (
+        productsByPrice[key].length > 0 && (
           <FlatList
             key={key}
-            data={prdoductBySlug[key]}
+            data={productsByPrice[key]}
             keyExtractor={(item) => item._id}
             numColumns={2}
             renderItem={renderProduct}
@@ -58,7 +71,7 @@ const PrdoductBySlug = ({ slug, navigation }) => {
         )
     )
   ) : (
-    <Loading />
+    <NoResponse />
   );
 };
 

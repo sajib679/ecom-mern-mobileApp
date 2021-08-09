@@ -3,9 +3,9 @@ import axios from "../../helpers/axios";
 
 export const getAddress = () => {
   return async (dispatch) => {
+    dispatch({ type: userConstants.GET_USER_ADDRESS_REQUEST });
     try {
       const res = await axios.post(`/user/getaddress`);
-      dispatch({ type: userConstants.GET_USER_ADDRESS_REQUEST });
       if (res.status === 200) {
         const {
           userAddress: { address },
@@ -29,9 +29,9 @@ export const getAddress = () => {
 
 export const addAddress = (payload) => {
   return async (dispatch) => {
+    dispatch({ type: userConstants.ADD_USER_ADDRESS_REQUEST });
     try {
       const res = await axios.post(`/user/address/create`, { payload });
-      dispatch({ type: userConstants.ADD_USER_ADDRESS_REQUEST });
       if (res.status === 201) {
         console.log(res);
         const {
@@ -56,9 +56,9 @@ export const addAddress = (payload) => {
 
 export const addOrder = (payload) => {
   return async (dispatch) => {
+    dispatch({ type: userConstants.ADD_USER_ORDER_REQUEST });
     try {
       const res = await axios.post(`/addOrder`, payload);
-      dispatch({ type: userConstants.ADD_USER_ORDER_REQUEST });
       if (res.status === 201) {
         console.log(res);
         const { order } = res.data;
@@ -86,9 +86,9 @@ export const addOrder = (payload) => {
 
 export const getOrders = () => {
   return async (dispatch) => {
+    dispatch({ type: userConstants.GET_USER_ORDER_REQUEST });
     try {
       const res = await axios.get(`/getOrders`);
-      dispatch({ type: userConstants.GET_USER_ORDER_REQUEST });
       if (res.status === 200) {
         console.log(res);
         const { orders } = res.data;
@@ -112,9 +112,9 @@ export const getOrders = () => {
 // single order with complete info and delivery location
 export const getOrder = (payload) => {
   return async (dispatch) => {
+    dispatch({ type: userConstants.GET_USER_ORDER_DETAILS_REQUEST });
     try {
       const res = await axios.post(`/getOrder`, payload);
-      dispatch({ type: userConstants.GET_USER_ORDER_DETAILS_REQUEST });
       if (res.status === 200) {
         console.log(res);
         const { order } = res.data;

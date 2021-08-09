@@ -2,11 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { StyleSheet, Text, View } from "react-native";
 import ProductCard from "../../components/ProductCard";
-import Loading from "../LoadingScreen";
 import { addToCart } from "../../store/actions/cart.action";
 import SearchComp from "../SearchedProduct/index";
 import { RefreshControl, FlatList, ScrollView } from "react-native";
-import { getAllBanner, getInitialData } from "../../store/actions";
+import { getInitialData } from "../../store/actions";
 import NoResponse from "../../components/NoResponse";
 import Carousel from "../../components/Carousel";
 import SectionHeader from "../../components/SectionHeader";
@@ -75,7 +74,7 @@ const AllProduct = ({ navigation }) => {
     );
   }
 
-  if (isLoaded && allProduct.length > 0) {
+  if (allProduct.length > 0) {
     return (
       <>
         <SearchComp navigation={navigation}></SearchComp>
@@ -141,9 +140,10 @@ const AllProduct = ({ navigation }) => {
         </ScrollView>
       </>
     );
+  } else if (allProduct.length === 0) {
+    return null;
   }
-
-  return null;
+  return <NoResponse />;
 };
 
 export default AllProduct;

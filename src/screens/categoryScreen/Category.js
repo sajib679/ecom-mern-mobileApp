@@ -2,13 +2,8 @@ import React, { useState, useEffect } from "react";
 import { FlatList } from "react-native-gesture-handler";
 import { StyleSheet, Text, View, Dimensions } from "react-native";
 import { useSelector } from "react-redux";
-import SubMenuCard from "./components/SubMenuCard";
-import SnackBar from "../../components/SnackBar";
+import SubMenuCard from "./components/SubMenuCardwithImage";
 import PrdoductBySlug from "../productScreen/ProductBySlug";
-import { SafeAreaView } from "react-native-safe-area-context";
-
-const screenWidth = Math.round(Dimensions.get("window").width);
-const screenHeight = Math.round(Dimensions.get("window").height);
 
 const Category = ({ route, navigation }) => {
   const { parentId, slug } = route.params;
@@ -20,14 +15,12 @@ const Category = ({ route, navigation }) => {
     setSubMenu(subCat);
   }, []);
 
-  console.log("from Cat:", subMenu);
-
   const grid = ({ item }) => {
-    console.log(item.slug);
+    console.log(item.categoryImage);
     return (
       <SubMenuCard
         catName={item.name}
-        color="tomato"
+        img={item.categoryImage?.img}
         onTap={() => {
           navigation.push("Category", {
             parentId: `${item._id}`,
